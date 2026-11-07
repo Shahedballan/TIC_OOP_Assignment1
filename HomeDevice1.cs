@@ -27,7 +27,8 @@ namespace ApplianceRepairCenter
                 if (value >= 0)
                     _standardPrice = value;
                 else
-            }      throw new ArgumentException("price cannot be negative.");
+                  throw new ArgumentException("price cannot be negative.");
+                  }
                   
         }
         public string Status
