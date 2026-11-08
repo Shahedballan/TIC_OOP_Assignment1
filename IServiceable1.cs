@@ -1,6 +1,6 @@
 ﻿namespace ApplianceRepairCenter
 {
-    public interface IRepairable
+    public interface IServiceable
     {
         double CalculateRebairCost();
         string GetApplianceDetails();
