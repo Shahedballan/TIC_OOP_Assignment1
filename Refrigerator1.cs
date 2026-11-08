@@ -1,43 +1,39 @@
 using System;
-namespace TIC_OOP_Assignment1
+namespace ApplianceRepairCenter
 {
- public class Refrigerator1:
- HomeDevice1,IServiceable1
+ public class WashingMachine1:HomeDevice
+ 
  {
-     public double CapacityLiters
+     public int DrumCapacityKg
      {
         get;
         set;
      }
-     public bool HasSmartScreen
+     public WashingMachine1(string serialNumber,string make,double standardPrice,string status, int drumCapacity,bool hasDryer)
+
+     
+     : base(serialNumber,make,standardPrice,status)
      {
-        get;
-        set;
-     }  
-     public Refrigerator1(string serialNumber,string make,double standardPrice,double capacity,bool hasSmartScreen)
-     : base(serialNumber,make,standardPrice)
-     {
-        CapacityLiters = capacity;
-        HasSmartScreen = hasSmartScreen;
+        DrumCapacityKg = drumCapacity;
+        hasDryer = hasDryer;
      }
      public override double
      ComputePrice()
      {
-        double baseprice =  StandardPrice + (CapacityLiters*15);
-        if(HasSmartScreen)
+        double baseprice =  StandardPrice + (DrumCapacityKg*20);
+        if(hasDryer)
         {
-            basePrice+=1000.0;
+            basePrice+=1500.0;
         }
         return basePrice;
      }
-     public double CalculateRebairCost()
+     public override string PrintInfo()
      {
-        return 200.0 + (ComputePrice()*0.20);
-     }
-     public string GetApplianceDetails()
-     {
-        string screenStatus = HasSmartScreen?"Yes" : "No";
-        return $"Refrigerator - Make :{Make}, Capacity :{CapacityLiters}L,Smart Screen: {screenStatus}, Total Price:{ComputePrice()} S.P";
+        string dryerStatus = HasDryer?"Yes" : "No";
+        return base.PrintInfo() + 
+        $"Drum Capacity:{DrumCapacityKg}Kg,-" +
+        $"Dryer:{dryerStatus},-" + 
+        $"Total Price:{ComputePrice()} ل.س";
      }
  }
  
