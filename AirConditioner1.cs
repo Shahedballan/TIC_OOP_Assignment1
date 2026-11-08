@@ -29,8 +29,8 @@ namespace ApplianceRepairCenter
      {
         string heatingStatus = HasHeating?"Yes" : "No";
           return base.PrintInfo() +
-          $"Horsepower:{HorsePower}HP,-" +
-          $"Heating: {heatingStatus},-" +
+          $"Horsepower:{HorsePower}HP," +
+          $"Heating: {heatingStatus}," +
           $"Total Price:{ComputePrice()} ل.س";
      }
  }
