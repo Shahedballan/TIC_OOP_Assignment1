@@ -23,7 +23,7 @@ namespace ApplianceRepairCenter
      public override double
      ComputePrice()
      {
-        double baseprice =  StandardPrice + (CapacityLiters*15);
+        double basePrice =  StandardPrice + (CapacityLiters*15);
         if(HasSmartScreen)
         {
             basePrice+=1000.0;
