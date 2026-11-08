@@ -40,10 +40,10 @@ namespace ApplianceRepairCenter
 
         protected HomeDevice(string serialNumber, string make, double standardPrice, string status)
         {
-            _serialNumber = serialNumber;
-            _make = make;
-            StandardPrice = standardPrice;
-            _status = status;
+            _SerialNumber = serialNumber;
+            _Make = make;
+            _StandardPrice = standardPrice;
+            _Status = status;
         }
 
         public abstract double ComputePrice();
