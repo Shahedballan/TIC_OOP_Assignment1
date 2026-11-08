@@ -31,8 +31,8 @@ namespace ApplianceRepairCenter
      {
         string dryerStatus = HasDryer?"Yes" : "No";
         return base.PrintInfo() + 
-        $"Drum Capacity:{DrumCapacityKg}Kg,-" +
-        $"Dryer:{dryerStatus},-" + 
+        $"Drum Capacity:{DrumCapacityKg}Kg," +
+        $"Dryer:{dryerStatus}," + 
         $"Total Price:{ComputePrice()} ل.س";
      }
  }
