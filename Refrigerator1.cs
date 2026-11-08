@@ -1,40 +1,43 @@
 using System;
 namespace ApplianceRepairCenter
 {
- public class WashingMachine1:HomeDevice
+ public class Refrigerator1: HomeDevice
  
  {
-     public int DrumCapacityKg
+     public double CapacityLiters
      {
         get;
         set;
      }
-     public WashingMachine1(string serialNumber,string make,double standardPrice,string status, int drumCapacity,bool hasDryer)
-
-     
-     : base(serialNumber,make,standardPrice,status)
+     public bool HasSmartScreen
      {
-        DrumCapacityKg = drumCapacity;
-        hasDryer = hasDryer;
+        get;
+        set;
+     }  
+     public Refrigerator1(string serialNumber, string make, double standardPrice, string status, double capacity,bool hasSmartScreen)
+     : base(serialNumber , make, standardPrice ,status)
+     {
+        CapacityLiters = capacity;
+        HasSmartScreen = hasSmartScreen;
      }
      public override double
      ComputePrice()
      {
-        double baseprice =  StandardPrice + (DrumCapacityKg*20);
-        if(hasDryer)
+        double baseprice =  StandardPrice + (CapacityLiters*15);
+        if(HasSmartScreen)
         {
-            basePrice+=1500.0;
+            basePrice+=1000.0;
         }
         return basePrice;
      }
      public override string PrintInfo()
      {
-        string dryerStatus = HasDryer?"Yes" : "No";
+        string screenStatus = HasSmartScreen?"Yes" : "No";
         return base.PrintInfo() + 
-        $"Drum Capacity:{DrumCapacityKg}Kg,-" +
-        $"Dryer:{dryerStatus},-" + 
-        $"Total Price:{ComputePrice()} ل.س";
+        $" Capacity:{CapacityLiters}L," +
+        $"Smart Screen: {screenStatus}," +
+         $"Total Price:{ComputePrice()} ل.س";
      }
  }
- 
+
 }
