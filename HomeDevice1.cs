@@ -51,10 +51,10 @@ namespace ApplianceRepairCenter
         public virtual string PrintInfo()
         {
             return
-            $"Serial Namber: {_serialNumber}  - " +
-            $"Make: {_make} - " +
-            $"Standar Price: {_standardPrice} ل.س - " +
-             $"Status: {_status}";
+            $"Serial Namber: {_serialNumber} " +
+            $"Make: {_make} " +
+            $"Standar Price: {_standardPrice} " +
+            $"Status: {_status}ل.س";
         }
 
     }
