@@ -6,10 +6,10 @@ namespace ApplianceRepairCenter
 {
     public class DeviceManager
     {
-        // ����� ������ ���� ������� ��� ����� �� ������� ����� ���� ���� �������Polymorphism 
+       
         private List<HomeDevice> devices = new List<HomeDevice>();
 
-        // 1. ����� ���� ���� ��� ������
+        
         public void AddDevice(HomeDevice device)
         {
             if (device != null && DeviceValidator.IsValidate(device.EntryDate)
@@ -22,14 +22,13 @@ namespace ApplianceRepairCenter
 
         
 
-        // 2. ����� �� ���� ����� ��� ����� �������� (Serial Number)
+        
         public HomeDevice SearchBySerial(string serialNumber)
         {
-            // ������� LINQ ����� ������ �������
+           
             return devices.FirstOrDefault(d => d.SerialNumber.Equals(serialNumber, StringComparison.OrdinalIgnoreCase));
         }
 
-        // 3. ����� ���� ������� ������ �� ����� ������ ������� �������
         public void UpdateDeviceStatus(string serialNumber, string newStatus)
         {
             HomeDevice device = SearchBySerial(serialNumber);
@@ -44,20 +43,17 @@ namespace ApplianceRepairCenter
             }
         }
 
-        // 4. ��� ������� ����� ��� ����� :
-        // - ������� ���� ������ "��� �������" ���� ����� ����� �������� ��� ����� ������ ������
-        // - ������� ���� �� �������  ����� �������� ����� �� ����� �������
         public void DisplaySortedDevices()
         {
             var sortedDevices = devices
-                .OrderBy(d => d.Status.Contains("�� �������") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) // ��� "�� �������" �� ������� (False �� True)
-                .ThenBy(d => d.EntryDate) // ����� ������ ��� ����� ������ ������ ������� ���� ��� �������
+                .OrderBy(d => d.Status.Contains("�� �������") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) 
+                .ThenBy(d => d.EntryDate) 
                 .ToList();
 
             Console.WriteLine("\n--- Appliance Repair Center: Sorted Device List ---");
             foreach (var device in sortedDevices)
             {
-                // ������� ���� PrintInfo ������� �� �� ���� (Polymorphism)
+                
                 Console.WriteLine(device.PrintInfo());
                 Console.WriteLine(new string('-', 40));
             }
