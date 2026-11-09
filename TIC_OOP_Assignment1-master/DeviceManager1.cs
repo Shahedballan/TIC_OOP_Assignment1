@@ -6,27 +6,30 @@ namespace ApplianceRepairCenter
 {
     public class DeviceManager
     {
-        // ÞÇÆãÉ áÊÎÒíä ÌãíÚ ÇáÃÌåÒÉ ÈÛÖ ÇáäÙÑ Úä ÃäæÇÚåÇ ÊØÈíÞ ãÈÏÃ ÊÚÏÏ ÇáÃÔßÇáPolymorphism 
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Polymorphism 
         private List<HomeDevice> devices = new List<HomeDevice>();
 
-        // 1. ÅÖÇÝÉ ÌåÇÒ ÌÏíÏ Åáì ÇáäÙÇã
+        // 1. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public void AddDevice(HomeDevice device)
         {
-            if (device != null)
+            if (device != null && DeviceValidator.IsValidate(device.EntryDate)
             {
                 devices.Add(device);
+                device.satachange += Onstatchanged;
                 Console.WriteLine($"Added device with Serial Number: {device.SerialNumber} successfully.");
             }
         }
 
-        // 2. ÇáÈÍË Úä ÌåÇÒ ÈäÇÁð Úáì ÇáÑÞã ÇáÊÓáÓáí (Serial Number)
+        
+
+        // 2. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Serial Number)
         public HomeDevice SearchBySerial(string serialNumber)
         {
-            // ÇÓÊÎÏÇã LINQ ááÈÍË ÇáÓÑíÚ æÇáÏÞíÞ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ LINQ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             return devices.FirstOrDefault(d => d.SerialNumber.Equals(serialNumber, StringComparison.OrdinalIgnoreCase));
         }
 
-        // 3. ÊÍÏíË ÍÇáÉ ÇáÕíÇäÉ ááÌåÇÒ ãÚ ÊØÈíÞ ÇáãäØÞ ÇáãØáæÈ ááÊÑÊíÈ
+        // 3. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public void UpdateDeviceStatus(string serialNumber, string newStatus)
         {
             HomeDevice device = SearchBySerial(serialNumber);
@@ -41,23 +44,49 @@ namespace ApplianceRepairCenter
             }
         }
 
-        // 4. ÚÑÖ ÇáÃÌåÒÉ ãÑÊÈÉ ÍÓÈ ÇáÔÑØ :
-        // - ÇáÃÌåÒÉ ÇáÊí ÍÇáÊåÇ "ÞíÏ ÇáÕíÇäÉ" ÊÙåÑ ÃæáÇð¡ ãÑÊÈÉ ÊÕÇÚÏíÇð ÍÓÈ ÊÇÑíÎ ÇáÏÎæá ÇáÃÞÏã
-        // - ÇáÃÌåÒÉ ÇáÊí Êã ÅÕáÇÍåÇ  ÊäÊÞá ÊáÞÇÆíÇð áÊÙåÑ Ýí äåÇíÉ ÇáÞÇÆãÉ
+        // 4. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ :
+        // - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public void DisplaySortedDevices()
         {
             var sortedDevices = devices
-                .OrderBy(d => d.Status.Contains("Êã ÇáÅÕáÇÍ") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) // íÖÚ "Êã ÇáÅÕáÇÍ" Ýí ÇáäåÇíÉ (False Ëã True)
-                .ThenBy(d => d.EntryDate) // ÊÑÊíÈ ÊÕÇÚÏí ÍÓÈ ÊÇÑíÎ ÇáÏÎæá ÇáÃÞÏã ááÃÌåÒÉ ÇáÊí ÞíÏ ÇáÕíÇäÉ
+                .OrderBy(d => d.Status.Contains("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) // ï¿½ï¿½ï¿½ "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (False ï¿½ï¿½ True)
+                .ThenBy(d => d.EntryDate) // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 .ToList();
 
             Console.WriteLine("\n--- Appliance Repair Center: Sorted Device List ---");
             foreach (var device in sortedDevices)
             {
-                // ÇÓÊÏÚÇÁ ÏÇáÉ PrintInfo ÇáãØæÑÉ Ýí ßá ÌåÇÒ (Polymorphism)
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PrintInfo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Polymorphism)
                 Console.WriteLine(device.PrintInfo());
                 Console.WriteLine(new string('-', 40));
             }
         }
+
+
+        private void displaysummary()
+        {
+            Console.WriteLine($"total:{HomeDevice.TotalDevices}|"+
+                $"Under maintance:{HomeDevice.undermaintancecount}|" +
+                $"+$\"repaired:{HomeDevice.ripairedcount}")
+        }
+
+
+
+
+
+
+
+        private void Onstatchanged(homedevice device, string oldstatus, string newstatus)
+        {
+            Console.WriteLine($"[Ø¥Ø´Ø¹Ø§Ø±]Ø§Ù„Ø¬Ù‡Ø§Ø² {device.serialnumber} ØªØºÙŠØ±Øª Ø­Ø§Ù„ØªÙ‡ Ù…Ù†" + 
+                $"{oldstatus}Ø§Ù„Ù‰ {newstatus}Ø¬Ù‡Ø§Ø²Ùƒ Ø¬Ø§Ù‡Ø² Ù„Ù„ØªØ³Ù„ÙŠÙ…");
+
+        }
+
+
+
+
+
     }
 }
