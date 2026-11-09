@@ -50,11 +50,11 @@ namespace ApplianceRepairCenter
             set { 
                  bool wasrepaired=DeviceValidator.IsRepairedStatus(_status);
                 bool nowrepaired = DeviceValidator.IsRepairedStatus(value);
-                string oldstatus=_status
+                string oldstatus = _status;
                 _status = value;
 
-                if (!wasRepaired && nowRepaired) _repairedCount++;
-                else if (wasRepaired && !nowRepaired) _repairedCount--;
+                if (!wasrepaired && nowrepaired) _repairedCount++;
+                else if (wasrepaired && !nowrepaired) _repairedCount--;
 
                 // إطلاق الحدث عند الانتقال إلى "تم الإصلاح" فقط
                 if (!wasrepaired && nowrepaired)
@@ -66,7 +66,7 @@ namespace ApplianceRepairCenter
 
         protected HomeDevice(string serialNumber, string make, double standardPrice, string status)
         {
-            if (!devicevalidator.IsValidSerialNumber(serialNumber))
+            if (!DeviceValidator.IsValidSerialNumber(serialNumber))
                 throw new ArgumentException("Invalid serial number format (e.g. R-001).");
 
             _serialNumber = serialNumber;
@@ -75,7 +75,7 @@ namespace ApplianceRepairCenter
             _status = status;                // مباشرة حتى لا يُطلق الحدث
 
             _totalCount++;
-            if (devicevalidator.IsRepairedStatus(status))
+            if (DeviceValidator.IsRepairedStatus(status))
                 _repairedCount++;
         }
 
