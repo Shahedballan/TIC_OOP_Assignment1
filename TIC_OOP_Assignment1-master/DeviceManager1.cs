@@ -46,7 +46,7 @@ namespace ApplianceRepairCenter
         public void DisplaySortedDevices()
         {
             var sortedDevices = devices
-                .OrderBy(d => d.Status.Contains("�� �������") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) 
+                .OrderBy(d => d.Status.Contains("تم الاصلاح") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) 
                 .ThenBy(d => d.EntryDate) 
                 .ToList();
 
