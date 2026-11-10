@@ -10,7 +10,7 @@ namespace ApplianceRepairCenter
         private readonly DateTime _entryDate = DateTime.Now;
 
         private static int _totalCount;
-        private  static int _repairedCount;
+        private static int _repairedCount;
 
         public event DeviceStatusChange StatusChanged; //   حدث عند تغيير حالة الجهاز الى تم الاصلاح
 
@@ -32,16 +32,16 @@ namespace ApplianceRepairCenter
         }
 
         public double StandardPrice
-        { 
+        {
             get { return _standardPrice; }
             set
             {
                 if (value >= 0)
                     _standardPrice = value;
                 else
-                  throw new ArgumentException("price cannot be negative.");
-                  }
-                  
+                    throw new ArgumentException("price cannot be negative.");
+            }
+
         }
         public DateTime EntryDate
         {
@@ -52,8 +52,9 @@ namespace ApplianceRepairCenter
         public string Status
         {
             get { return _status; }
-            set { 
-                 bool wasRepaired=DeviceValidator.IsRepairedStatus(_status);
+            set
+            {
+                bool wasRepaired = DeviceValidator.IsRepairedStatus(_status);
                 bool nowRepaired = DeviceValidator.IsRepairedStatus(value);
                 string oldStatus = _status;
                 _status = value;
@@ -67,7 +68,7 @@ namespace ApplianceRepairCenter
 
             }
         }
-        
+
 
         protected HomeDevice(string serialNumber, string make, double standardPrice, string status)
         {
