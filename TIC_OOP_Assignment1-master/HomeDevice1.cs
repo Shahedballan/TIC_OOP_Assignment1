@@ -7,15 +7,16 @@ namespace ApplianceRepairCenter
         private string _make;
         private double _standardPrice;
         private string _status;
+        private readonly DateTime _entryDate = DateTime.Now;
 
-        private int _totalcount;
-        private int _repairedcount;
+        private static int _totalCount;
+        private  static int _repairedCount;
 
-        public event devicesatuschange statchanged; // حدث عند تغيير حالة الجهاز 
+        public event DeviceStatusChange StatusChanged; //   حدث عند تغيير حالة الجهاز الى تم الاصلاح
 
-        public static int totaldevice => _totalcount;
-        public static int repairedcount => _repairedcount;
-        public static int undermaintancecount => _totalcount - _repairedcount;
+        public static int TotalDevice => _totalCount;
+        public static int RepairedCount => _repairedCount;
+        public static int UnderMaintenanceCount => _totalCount - _repairedCount;
 
 
 
@@ -42,23 +43,27 @@ namespace ApplianceRepairCenter
                   }
                   
         }
-        public DateTime EntryDate { get; } = DateTime.Now;
+        public DateTime EntryDate
+        {
+
+            get { return _entryDate; }
+        }
 
         public string Status
         {
             get { return _status; }
             set { 
-                 bool wasrepaired=DeviceValidator.IsRepairedStatus(_status);
-                bool nowrepaired = DeviceValidator.IsRepairedStatus(value);
-                string oldstatus = _status;
+                 bool wasRepaired=DeviceValidator.IsRepairedStatus(_status);
+                bool nowRepaired = DeviceValidator.IsRepairedStatus(value);
+                string oldStatus = _status;
                 _status = value;
 
-                if (!wasrepaired && nowrepaired) _repairedCount++;
-                else if (wasrepaired && !nowrepaired) _repairedCount--;
+                if (!wasRepaired && nowRepaired) _repairedCount++;
+                else if (wasRepaired && !nowRepaired) _repairedCount--;
 
                 // إطلاق الحدث عند الانتقال إلى "تم الإصلاح" فقط
-                if (!wasrepaired && nowrepaired)
-                    Onstatchanged(oldstatus, value);
+                if (!wasRepaired && nowRepaired)
+                    OnStatusChanged(oldStatus, value);
 
             }
         }
@@ -84,15 +89,15 @@ namespace ApplianceRepairCenter
         public virtual string PrintInfo()
         {
             return
-            $"Serial Namber: {_serialNumber} " +
-            $"Make: {_make} " +
-            $"Standar Price: {_standardPrice} " +
-            $"Status: {_status}ل.س";
+            $"Serial Number: {_serialNumber}, " +
+            $"Make: {_make} ," +
+            $"Standar Price: {_standardPrice}ل.س, " +
+            $"Status: {_status},";
         }
 
-        protected virtual void Onstatchanged(string oldstat, string newstat)
+        protected virtual void OnStatusChanged(string oldStatus, string newStatus)
         {
-            statchanged?.Invoke(this, oldstat, newstat);
+            StatusChanged?.Invoke(this, oldStatus, newStatus);
 
         }
 

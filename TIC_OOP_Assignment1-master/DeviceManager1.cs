@@ -15,7 +15,7 @@ namespace ApplianceRepairCenter
             if (device != null && DeviceValidator.IsValidate(device.EntryDate)
             {
                 devices.Add(device);
-                device.satachange += Onstatchanged;
+                device.StatusChanged += OnStatusChanged;
                 Console.WriteLine($"Added device with Serial Number: {device.SerialNumber} successfully.");
             }
         }
@@ -45,6 +45,7 @@ namespace ApplianceRepairCenter
 
         public void DisplaySortedDevices()
         {
+            //الاجهزة قيد الاصلاح اولا ثم التي تم تصليحها،وبحسب تاريخ ادخال الجهاز
             var sortedDevices = devices
                 .OrderBy(d => d.Status.Contains("تم الاصلاح") || d.Status.Equals("Repaired", StringComparison.OrdinalIgnoreCase)) 
                 .ThenBy(d => d.EntryDate) 
@@ -72,8 +73,8 @@ namespace ApplianceRepairCenter
 
 
 
-
-        private void Onstatchanged(homedevice device, string oldstatus, string newstatus)
+                 //الحدث:إشعار عند اكتمال الاصلاح
+        private void OnStatusChanged(homedevice device, string oldStatus, string newStatus)
         {
             Console.WriteLine($"[إشعار]الجهاز {device.serialnumber} تغيرت حالته من" + 
                 $"{oldstatus}الى {newstatus}جهازك جاهز للتسليم");

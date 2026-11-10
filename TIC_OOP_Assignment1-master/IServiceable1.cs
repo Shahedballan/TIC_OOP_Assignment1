@@ -1,6 +1,6 @@
-﻿namespace ApplianceRepairCenternamespace ApplianceRepairCenter
+﻿namespace  ApplianceRepairCenter
 {
-    public interface IServiceablepublic interface IServiceable
+    public interface IServiceable
     {
         double ComputePrice();
         string PrintInfo();
