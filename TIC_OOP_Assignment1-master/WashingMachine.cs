@@ -15,7 +15,7 @@ namespace ApplianceRepairCenter
      : base(serialNumber,make,standardPrice,status)
      {
         DrumCapacityKg = drumCapacity;
-        HasDryer = hasDryer;
+        HasDryer = HasDryer;
      }
      public override double
      ComputePrice()

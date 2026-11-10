@@ -65,9 +65,9 @@ namespace ApplianceRepairCenter
             manager.DisplaySortedDevices();
 
             Console.WriteLine("\n= 7) ملخص الأجهزة =");
-            Console.WriteLine($"الإجمالي: {HomeDevice.totaldevice}");
-            Console.WriteLine($"تم إصلاحها: {HomeDevice.repairedcount}");
-            Console.WriteLine($"قيد الصيانة: {HomeDevice.undermaintancecount}");
+            Console.WriteLine($"الإجمالي: {HomeDevice.TotalDevice}");
+            Console.WriteLine($"تم إصلاحها: {HomeDevice.RepairedCount}");
+            Console.WriteLine($"قيد الصيانة: {HomeDevice.UnderMaintenanceCount}");
 
             Console.WriteLine("\nاضغط أي زر للخروج");
             Console.ReadKey();

@@ -1,5 +1,5 @@
 ﻿namespace ApplianceRepairCenter    //تغير حالة الجهاز
 {
-    puplic delegate void devicesatuschange( HomeDevice device, string oldStatus, string newStatus);
+    public delegate void DeviceSatusChange( HomeDevice device, string oldStatus, string newStatus);
 }
 

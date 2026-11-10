@@ -9,7 +9,13 @@ namespace ApplianceRepairCenter
         get;
         set;
      }
-     public AirConditioner1(string serialNumber,string make,double standardPrice ,string status,double horsePower,bool hasHeating)
+
+        public bool hasHeating
+        {
+            get;
+            set;
+        }
+        public AirConditioner1(string serialNumber,string make,double standardPrice ,string status,double horsePower,bool hasHeating)
      :base(serialNumber,make,standardPrice,status)
      {
         HorsePower = horsePower;
@@ -18,7 +24,7 @@ namespace ApplianceRepairCenter
      public override double
      ComputePrice()
      {
-        double baseprice =  StandardPrice + (HorsePower*60.0);
+        double basePrice =  StandardPrice + (HorsePower*60.0);
         if(HasHeating)
         {
             basePrice+=2000.0;

@@ -12,7 +12,7 @@ namespace ApplianceRepairCenter
         
         public void AddDevice(HomeDevice device)
         {
-            if (device != null && DeviceValidator.IsValidate(device.EntryDate)
+            if (device != null && DeviceValidator.IsValidDate(device.EntryDate)
             {
                 devices.Add(device);
                 device.StatusChanged += OnStatusChanged;
@@ -61,11 +61,11 @@ namespace ApplianceRepairCenter
         }
 
 
-        private void displaysummary()
+        public void displaysummary()
         {
             Console.WriteLine($"total:{HomeDevice.TotalDevices}|"+
-                $"Under maintance:{HomeDevice.undermaintancecount}|" +
-                $"+$\"repaired:{HomeDevice.ripairedcount}")
+                $"Under maintance:{HomeDevice.UnderMaintenanceCount}|" +
+                $"+$\"repaired:{HomeDevice.RipairedCount}")
         }
 
 
