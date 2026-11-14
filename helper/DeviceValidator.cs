@@ -21,7 +21,7 @@ namespace ApplianceRepairCenter
       
         public static bool IsRepairedStatus(string status)
         {
-            return status == "Repaired" || status == "تم الإصلاح";
+            return status == "Repaired" ;
         }
     }
 }

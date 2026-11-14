@@ -92,7 +92,7 @@ namespace ApplianceRepairCenter
             return
             $"Serial Number: {_serialNumber}, " +
             $"Make: {_make} ," +
-            $"Standard Price: {_standardPrice}ل.س, " +
+            $"Standard Price: {_standardPrice} S.P, " +
             $"Status: {_status},";
         }
 

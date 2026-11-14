@@ -28,7 +28,7 @@ namespace ApplianceRepairCenter
             return base.PrintInfo() +
                    $" Capacity: {CapacityLiters}L, " +
                    $"Smart Screen: {screenStatus}, " +
-                   $"Total Price: {ComputePrice()} ل.س";
+                   $"Total Price: {ComputePrice()} S.P";
         }
     }
 }

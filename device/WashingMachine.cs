@@ -31,7 +31,7 @@ namespace ApplianceRepairCenter
             return base.PrintInfo() +
                    $" Drum Capacity: {DrumCapacityKg}Kg, " +
                    $"Dryer: {dryerStatus}, " +
-                   $"Total Price: {ComputePrice()} ل.س";
+                   $"Total Price: {ComputePrice()} S.P";
         }
     }
 }

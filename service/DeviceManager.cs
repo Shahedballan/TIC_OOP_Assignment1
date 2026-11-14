@@ -57,8 +57,7 @@ namespace ApplianceRepairCenter
         // معالج الحدث:إشعار عند اكتمال الاصلاح
         private void OnStatusChanged(HomeDevice device, string oldStatus, string newStatus)
         {
-            Console.WriteLine($"[إشعار] الجهاز {device.SerialNumber} تغيرت حالته من " +
-                              $"{oldStatus} الى {newStatus}، جهازك جاهز للتسليم");
+            Console.WriteLine($"[notfy]  device {device.SerialNumber} status changed from " +   $"{oldStatus} to {newStatus}، your device is ready");
         }
     }
 }
