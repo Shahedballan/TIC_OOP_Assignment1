@@ -67,7 +67,7 @@ namespace ApplianceRepairCenter
             Console.WriteLine("\n 7) Device Summary ");
             Console.WriteLine($"Total Device: {HomeDevice.TotalDevice}");
             Console.WriteLine($"Repaired: {HomeDevice.RepairedCount}");
-            Console.WriteLine($"under maintance": {HomeDevice.UnderMaintenanceCount}");
+            Console.WriteLine($"under maintance: {HomeDevice.UnderMaintenanceCount}");
 
             Console.WriteLine("\n Press any button to exit");
             Console.ReadKey();
